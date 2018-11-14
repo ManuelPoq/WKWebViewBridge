@@ -1,4 +1,9 @@
 <html>
+    <script>
+        function tapped() {
+            document.getElementById("worldButton").style.color = "red";
+        }
+    </script>
     <head>
         <style type="text/css">
             h1{font-family:"Helvetia Neue;";color:000000;font-size:50;text-align:center;padding:10px; }
@@ -10,6 +15,6 @@
         </br>
         </br>
         <h1> Tap on the button to reset the world </h1>
-            <input type="button" name="Reset world!" id="clickMeButton" value="Tap Me!"/ class="btn" style="width:200;height:200" >
+        <input type="button" name="Reset world!" id="worldButton" value="Tap Me!"/ class="btn" style="width:200;height:200" onclick="tapped();" />
     </body>
 </html>

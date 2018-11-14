@@ -9,13 +9,21 @@
 import UIKit
 import WebKit
 
-class ViewController: UIViewController, WKNavigationDelegate {
+class ViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHandler {
+    
     
     @IBOutlet weak var webView: WKWebView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let webViewConfiguration = WKWebViewConfiguration()
+        
+        let userContentController = WKUserContentController()
+        
+        userContentController.add(self, name: "buttonTapped")
+        
+        //webView.configuration =
         
         webView.navigationDelegate = self
         
@@ -28,6 +36,11 @@ class ViewController: UIViewController, WKNavigationDelegate {
         
     }
 
-
+    // MARK: - WKScriptMessageHandler
+    
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        
+    }
+    
 }
 
