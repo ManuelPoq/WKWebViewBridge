@@ -43,8 +43,9 @@ class ViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHan
         if let button = changeColorButton {
             button.translatesAutoresizingMaskIntoConstraints = false
             self.view.addSubview(button)
-            button.setTitle("Change Web Button Color", for: .normal)
+            button.setTitle("Change Checkout Now Button Color", for: .normal)
             button.setTitleColor(.black, for: .normal)
+            button.addTarget(self, action:#selector(changeColorCheckoutNowButton), for: .touchUpInside)
             button.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -50).isActive = true
             button.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         }
@@ -64,7 +65,7 @@ class ViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHan
         self.present(alert, animated: true)
     }
 
-    @IBAction func changeColorButtonTapped(_ sender: Any) {
-        
+    @objc func changeColorCheckoutNowButton() {
+        webView?.evaluateJavaScript("changeColorCheckoutNowButton();", completionHandler: nil)
     }
 }

@@ -12,10 +12,15 @@
     
         // Function called from Native
         function setupApplePayButton() {
-            document.getElementById("paymentButton").style.color = getRandomColor();
+            changeColorCheckoutNowButton()
         }
     
         // Helpers
+        
+        function changeColorCheckoutNowButton() {
+            document.getElementById("paymentButton").style.color = getRandomColor();
+        }
+        
         function getRandomColor() {
             var letters = '0123456789ABCDEF';
             var color = '#';
