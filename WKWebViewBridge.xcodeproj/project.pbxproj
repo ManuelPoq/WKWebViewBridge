@@ -49,6 +49,7 @@
 		9FE908DB219C863E00880B15 /* WKWebViewBridgeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKWebViewBridgeUITests.swift; sourceTree = "<group>"; };
 		9FE908DD219C863E00880B15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9FE908EA219C882800880B15 /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		9FE908EE219DE84000880B15 /* WKWebViewBridge.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WKWebViewBridge.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +101,7 @@
 		9FE908BA219C863B00880B15 /* WKWebViewBridge */ = {
 			isa = PBXGroup;
 			children = (
+				9FE908EE219DE84000880B15 /* WKWebViewBridge.entitlements */,
 				9FE908BB219C863B00880B15 /* AppDelegate.swift */,
 				9FE908BD219C863B00880B15 /* ViewController.swift */,
 				9FE908BF219C863B00880B15 /* Main.storyboard */,
@@ -204,6 +206,11 @@
 				TargetAttributes = {
 					9FE908B7219C863B00880B15 = {
 						CreatedOnToolsVersion = 10.0;
+						SystemCapabilities = {
+							com.apple.ApplePay = {
+								enabled = 1;
+							};
+						};
 					};
 					9FE908CB219C863E00880B15 = {
 						CreatedOnToolsVersion = 10.0;
@@ -444,8 +451,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = WKWebViewBridge/WKWebViewBridge.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DK34MVSU63;
+				DEVELOPMENT_TEAM = AZ3MM3PFYW;
 				INFOPLIST_FILE = WKWebViewBridge/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -462,8 +470,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = WKWebViewBridge/WKWebViewBridge.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DK34MVSU63;
+				DEVELOPMENT_TEAM = AZ3MM3PFYW;
 				INFOPLIST_FILE = WKWebViewBridge/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

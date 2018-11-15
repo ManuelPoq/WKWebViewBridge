@@ -8,6 +8,7 @@
 
 import UIKit
 import WebKit
+import PassKit
 
 class ViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHandler {
     
@@ -59,13 +60,24 @@ class ViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHan
         guard let body = message.body as? String else {
             return
         }
-        
-        let alert = UIAlertController(title: "Message From Web", message: body.removingPercentEncoding, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: nil))
-        self.present(alert, animated: true)
+
+        let request = PKPaymentRequest()
+        request.countryCode = "US"
+        request.currencyCode = "USD"
+        request.paymentSummaryItems = [
+            PKPaymentSummaryItem(label: "T-shirt", amount: 33.3),
+        ]
+        request.supportedNetworks = [PKPaymentNetwork.amex]
+        request.merchantCapabilities = PKMerchantCapability.capability3DS
+        request.merchantIdentifier = "merchant.com.poqstudio.WKWebViewBridge"
+        let applePayController = PKPaymentAuthorizationViewController(paymentRequest: request)
+        self.present(applePayController!, animated: true, completion: nil)
     }
 
     @objc func changeColorCheckoutNowButton() {
         webView?.evaluateJavaScript("changeColorCheckoutNowButton();", completionHandler: nil)
     }
 }
+
+
+
