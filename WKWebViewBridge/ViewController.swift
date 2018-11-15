@@ -79,5 +79,10 @@ class ViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHan
     }
 }
 
+extension ViewController: PKPaymentAuthorizationViewControllerDelegate {
+    func paymentAuthorizationViewControllerDidFinish(_ controller: PKPaymentAuthorizationViewController) {
+        
+    }
+    
 
-
+}
