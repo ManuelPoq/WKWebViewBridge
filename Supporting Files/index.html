@@ -3,7 +3,7 @@
         function checkoutButtonTapped() {
             try {
                 var paymentJSON = encodeURIComponent("\"paymentType\":\"Apple Pay\", \"amount\":$33.3")
-                webkit.messageHandlers.poqAppCallBack.postMessage(paymentJSON);
+                webkit.messageHandlers.poqAppCallBackFromWeb.postMessage(paymentJSON);
             } catch(err) {
                 console.log('Can not reach native code');
             }
