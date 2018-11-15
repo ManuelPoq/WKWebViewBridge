@@ -1,5 +1,6 @@
 <html>
     <script>
+        // Function called from the web button
         function checkoutButtonTapped() {
             try {
                 var paymentJSON = encodeURIComponent("\"paymentType\":\"Apple Pay\", \"amount\":$33.3")
@@ -7,6 +8,21 @@
             } catch(err) {
                 console.log('Can not reach native code');
             }
+        }
+    
+        // Function called from Native
+        function setupApplePayButton() {
+            document.getElementById("paymentButton").style.color = getRandomColor();
+        }
+    
+        // Helpers
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
         }
     </script>
     <head>
