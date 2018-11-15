@@ -12,34 +12,40 @@ import WebKit
 class ViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHandler {
     
     
-    @IBOutlet weak var webView: WKWebView!
+    var webView: WKWebView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let webViewConfiguration = WKWebViewConfiguration()
-        
         let userContentController = WKUserContentController()
+        userContentController.add(self, name: "poqAppCallBack")
         
-        userContentController.add(self, name: "buttonTapped")
+        let webViewConfiguration = WKWebViewConfiguration()
+        webViewConfiguration.userContentController = userContentController
         
-        //webView.configuration =
-        
-        webView.navigationDelegate = self
+        webView = WKWebView(frame: self.view.frame, configuration: webViewConfiguration)
+       
+        view.addSubview(webView!)
+
+        webView?.navigationDelegate = self
         
         let url = Bundle.main.url(forResource: "index", withExtension: "html")!
-        webView.loadFileURL(url, allowingReadAccessTo: url)
-        let request = URLRequest(url: url)
-        webView.load(request)
-        
-        
-        
+        webView?.loadFileURL(url, allowingReadAccessTo: url)
+   
     }
 
     // MARK: - WKScriptMessageHandler
     
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         
+        guard let body = message.body as? String else {
+            return
+        }
+        
+        
+        let alert = UIAlertController(title: "Message From Web", message: body.removingPercentEncoding, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: nil))
+        self.present(alert, animated: true)
     }
     
 }
