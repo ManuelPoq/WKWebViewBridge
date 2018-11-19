@@ -1,46 +1,32 @@
 <html>
-    <script>
-        // Function called from the web button
-        function checkoutButtonTapped() {
-            try {
-                var paymentJSON = encodeURIComponent("\"paymentType\":\"Apple Pay\", \"amount\":$33.3")
-                webkit.messageHandlers.poqAppCallBackFromWeb.postMessage(paymentJSON);
-            } catch(err) {
-                console.log('Can not reach native code');
-            }
-        }
-    
-        // Function called from Native
-        function setupApplePayButton() {
-            changeColorCheckoutNowButton()
-        }
-    
-        // Helpers
-        
-        function changeColorCheckoutNowButton() {
-            document.getElementById("paymentButton").style.color = getRandomColor();
-        }
-        
-        function getRandomColor() {
-            var letters = '0123456789ABCDEF';
-            var color = '#';
-            for (var i = 0; i < 6; i++) {
-                color += letters[Math.floor(Math.random() * 16)];
-            }
-            return color;
-        }
-    </script>
     <head>
-        <style type="text/css">
-            h1{font-family:"Helvetia Neue;";color:000000;font-size:50;text-align:center;padding:10px; }
-            p{font-family:"Helvetia Neue;";font-size:15 ;color:000000;text-align:center; text-align: justify}
-            </style>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="http://127.0.0.1:8080/dist/apple-pay.min.css">
+        <style>
+            body {
+                font-family: system-ui;
+            }
+            h1 {
+                text-align: center;
+            }
+        </style>
     </head>
     <body>
-        </br>
-        </br>
-        </br>
-        <h1> You have 1 item in your bag with a total price of $33.3 </h1>
-        <input type="button" name="Checkout" id="paymentButton" value="WEB Checkout Now"/ class="btn"  style="font-size : 80px; width: 100%; height: 100px;" onclick="checkoutButtonTapped();" />
+        <h1>Web Checkout</h1>
+        <h3>You have 1 item in your bag with a total price of $33.3 </h3>
+        <button type="button">Regular Web Checkout</button>
+        <br>
+        <br>
+        <div class="poqApplePayButtonContainer"></div>
+        <div id="applePayResponse"></div>
+        <script src="http://127.0.0.1:8080/dist/web-checkout.min.js"></script>
+        <script src="http://127.0.0.1:8080/dist/apple-pay.min.js"></script>
+        <script>
+            const checkout = new WebCheckout();
+            const applePay = new ApplePay(checkout);
+            checkout.on('paymentauthorized', event => {
+                document.getElementById('applePayResponse').textContent = JSON.stringify(event);
+            });
+        </script>
     </body>
 </html>
