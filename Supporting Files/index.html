@@ -24,6 +24,9 @@
         <script>
             const checkout = new WebCheckout();
             const applePay = new ApplePay(checkout);
+            checkout.on('applepayenabled', () => {
+                document.getElementById('applePayResponse').textContent = 'Apple Pay is available!'
+            });
             checkout.on('paymentauthorized', event => {
                 document.getElementById('applePayResponse').textContent = JSON.stringify(event);
             });
